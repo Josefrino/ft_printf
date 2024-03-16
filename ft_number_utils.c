@@ -1,94 +1,94 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numbers.c                                       :+:      :+:    :+:   */
+/*   ft_number_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josvieir <josvieir@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: josvieir <josvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:01:02 by josvieir          #+#    #+#             */
-/*   Updated: 2024/03/16 16:31:04 by josvieir         ###   ########.fr       */
+/*   Updated: 2024/03/16 19:28:58 by josvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int number, int *length)
+void	ft_putnbr(int num, int *len)
 {
-	if (number == -2147483648)
+	if (num == -2147483648)
 	{
 		write(1, "-2147483648", 11);
-		(*length) += 11;
+		(*len) += 11;
 		return ;
 	}
-	if (number < 0)
+	if (num < 0)
 	{
-		ft_putchar_len('-', length);
-		ft_putnbr(number * -1, length);
+		ft_putchar_len('-', len);
+		ft_putnbr(num * -1, len);
 	}
 	else
 	{
-		if (number > 9)
-			ft_putnbr(number / 10, length);
-		ft_putchar_len(number % 10 + '0', length);
+		if (num > 9)
+			ft_putnbr(num / 10, len);
+		ft_putchar_len(num % 10 + '0', len);
 	}
 }
 
-void	ft_putptr(size_t pointer, int *length)
+void	ft_putptr(size_t ptr, int *len)
 {
-	char	string[25];
+	char	str[25];
 	int		i;
-	char	*base_character;
+	char	*base_chars;
 
-	base_character = "0123456789abcdef";
+	base_chars = "0123456789abcdef";
 	i = 0;
 	write(1, "0x", 2);
-	(*length) += 2;
-	if (pointer == 0)
+	(*len) += 2;
+	if (ptr == 0)
 	{
-		ft_putchar_len('0', length);
+		ft_putchar_len('0', len);
 		return ;
 	}
-	while (pointer != 0)
+	while (ptr != 0)
 	{
-		string[i] = base_character[pointer % 16];
-		pointer = pointer / 16;
+		str[i] = base_chars[ptr % 16];
+		ptr = ptr / 16;
 		i++;
 	}
 	while (i--)
 	{
-		ft_putchar_len(string[i], length);
+		ft_putchar_len(str[i], len);
 	}
 }
 
-void	ft_puthexa(unsigned int x, int *length, char x_or_x)
+void	ft_puthexa(unsigned int x, int *len, char lower_or_upper)
 {
-	char	string[25];
-	char	*base_character;
+	char	str[25];
+	char	*base_chars;
 	int		i;
 
-	if (x_or_x == 'X')
-		base_character = "0123456789ABCDEF";
+	if (lower_or_upper == 'X')
+		base_chars = "0123456789ABCDEF";
 	else
-		base_character = "0123456789abcdef";
+		base_chars = "0123456789abcdef";
 	i = 0;
 	if (x == 0)
 	{
-		ft_putchar_len('0', length);
+		ft_putchar_len('0', len);
 		return ;
 	}
 	while (x != 0)
 	{
-		string[i] = base_character [x % 16];
+		str[i] = base_chars [x % 16];
 		x = x / 16;
 		i++;
 	}
 	while (i--)
-		ft_putchar_len(string[i], length);
+		ft_putchar_len(str[i], len);
 }
 
-void	ft_putunbr(unsigned int u, int *length)
+void	ft_putunbr(unsigned int u, int *len)
 {
 	if (u >= 10)
-		ft_putunbr(u / 10, length);
-	ft_putchar_len(u % 10 + '0', length);
+		ft_putunbr(u / 10, len);
+	ft_putchar_len(u % 10 + '0', len);
 }
