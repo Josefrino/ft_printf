@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_number_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josvieir <josvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: josvieir <josvieir@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:01:02 by josvieir          #+#    #+#             */
-/*   Updated: 2024/03/16 19:28:58 by josvieir         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:19:04 by josvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	ft_putptr(size_t ptr, int *len)
 
 	base_chars = "0123456789abcdef";
 	i = 0;
-	write(1, "0x", 2);
-	(*len) += 2;
 	if (ptr == 0)
 	{
-		ft_putchar_len('0', len);
+		ft_putstr_null("(nil)", len);
 		return ;
 	}
+	write(1, "0x", 2);
+	(*len) += 2;
 	while (ptr != 0)
 	{
 		str[i] = base_chars[ptr % 16];
@@ -78,7 +78,7 @@ void	ft_puthexa(unsigned int x, int *len, char lower_or_upper)
 	}
 	while (x != 0)
 	{
-		str[i] = base_chars [x % 16];
+		str[i] = base_chars[x % 16];
 		x = x / 16;
 		i++;
 	}

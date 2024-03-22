@@ -6,7 +6,7 @@
 #    By: josvieir <josvieir@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/02 12:52:16 by josvieir          #+#    #+#              #
-#    Updated: 2024/03/16 16:42:28 by josvieir         ###   ########.fr        #
+#    Updated: 2024/03/22 17:57:21 by josvieir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS	= ft_printf.c \
 
 OBJS	= $(SRCS:.c=.o)
 
-CC	= gcc
+CC	= cc
 
 RM	= rm -f
 
